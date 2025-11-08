@@ -16,7 +16,7 @@ export default function MissionCard({
   userEmail,
   onComplete,
 }: MissionCardProps) {
-  const isCompleted = userEmail && mission.completedBy?.includes(userEmail);
+  const isCompleted = !!(userEmail && mission.completedBy?.includes(userEmail));
 
   return (
     <motion.div
