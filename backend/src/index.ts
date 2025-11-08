@@ -1,21 +1,29 @@
-// src/index.ts
 import express from "express";
 import cors from "cors";
+import { config, validateEnv } from "./config/env";
+import missionRoutes from "./routes/missions";
+import userRoutes from "./routes/users";
+
+// Validate environment variables
+validateEnv();
 
 const app = express();
+
+// Middleware
 app.use(cors());
 app.use(express.json());
 
-app.get("/", (req, res) => {
-  res.send("Backend is running!");
+// Health check
+app.get("/", (_req, res) => {
+  res.json({ status: "ok", message: "Operation Theta Backend is running" });
 });
 
-app.get("/missions", (req, res) => {
-  res.json([
-    { id: 1, title: "Tech Challenge", description: "Solve a simple puzzle." },
-    { id: 2, title: "Brotherhood Task", description: "Work together to progress." }
-  ]);
-});
+// Routes
+app.use("/missions", missionRoutes);
+app.use("/users", userRoutes);
 
-const PORT = 5050;
-app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
+// Start server
+app.listen(config.port, () => {
+  console.log(`🚀 Server running on port ${config.port}`);
+  console.log(`📍 Environment: ${config.nodeEnv}`);
+});
