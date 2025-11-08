@@ -1,8 +1,8 @@
 import { getIdToken } from "firebase/auth";
 import { auth } from "@/firebase/config";
 
-const API_BASE_URL =
-  process.env.NEXT_PUBLIC_API_URL || "http://localhost:5050";
+const API_BASE_URL = "https://operation-theta.vercel.app";
+//  process.env.NEXT_PUBLIC_API_URL || "http://localhost:5050";
 
 export async function fetchApi(
   endpoint: string,

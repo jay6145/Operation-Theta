@@ -79,7 +79,7 @@ frontend/
    ```bash
    npm run dev
    ```
-   Backend runs on http://localhost:5050
+   Backend runs on http://localhost:5050 or 
 
 ### Frontend Setup
 
